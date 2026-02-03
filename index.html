@@ -1,175 +1,453 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Петербург сквозь года</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Петербург сквозь года — курс акварели</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-jLKHWMZtU7E2kPaWY5Avzkdxl3pNGdisz8Iky3Uczdlz7YT1Do1B4Qgm6r0w6V7E"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        font-family: "Montserrat", "Arial", sans-serif;
+        color: #2d2a26;
+        background-color: #f8f4ef;
+      }
+      
+      .navbar {
+        background: #fff;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      }
 
-  <!-- Bootstrap 4 -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
+      .navbar-brand {
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
 
-<body id="top" data-spy="scroll" data-target="#topNav" data-offset="90">
+      .hero {
+        position: relative;
+        padding: 140px 0 80px;
+        background: linear-gradient(120deg, rgba(255, 245, 235, 0.95), rgba(255, 255, 255, 0.95)),
+          url("img/fon.png") center/cover no-repeat;
+      }
 
-  <!-- NAV -->
-  <nav id="topNav" class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
-    <div class="container">
-      <a class="navbar-brand" href="#top">
-        <img src="img/logo.png" alt="logo" class="site-logo">
-      </a>
+      .hero-title {
+        font-size: 48px;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: #c46b3b;
+      }
+      
+      .hero-subtitle {
+        font-size: 20px;
+        font-weight: 600;
+        color: #3a6a8f;
+        text-transform: uppercase;
+      }
+      
+      .hero-list li {
+        margin-bottom: 10px;
+      }
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      .hero-card {
+        background: #fff7ef;
+        border: 1px solid rgba(196, 107, 59, 0.25);
+        border-radius: 12px;
+        padding: 16px;
+        text-align: center;
+      }
 
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><a class="nav-link js-scroll" href="#about">О чем курс</a></li>
-          <li class="nav-item"><a class="nav-link js-scroll" href="#program">Программа курса</a></li>
-          <li class="nav-item"><a class="nav-link js-scroll" href="#expert">Эксперт</a></li>
-          <li class="nav-item"><a class="nav-link js-scroll" href="#signup">Записаться на курс</a></li>
-          <li class="nav-item"><a class="nav-link js-scroll" href="#contacts">Контакты</a></li>
-        </ul>
+      .btn-brand {
+        background: #f08445;
+        color: #fff;
+        border-radius: 30px;
+        padding: 12px 32px;
+        font-weight: 700;
+        box-shadow: 0 10px 18px rgba(240, 132, 69, 0.35);
+      }
 
-        <div class="nav-social">
-          <a class="nav-social__link" href="#" aria-label="Telegram">
-            <img src="img/tg.svg" alt="">
-          </a>
-          <a class="nav-social__link" href="#" aria-label="WhatsApp">
-            <img src="img/wa.svg" alt="">
-          </a>
-        </div>
-      </div>
-    </div>
-  </nav>
+      .btn-brand:hover {
+        color: #fff;
+        background: #e07036;
+      }
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6 mb-4 mb-lg-0">
-          <div class="hero__content">
-            <h1 class="hero__title">Петербург сквозь года</h1>
-            <p class="hero__subtitle">с Владимиром Заруцким</p>
+      .painting-stack {
+        position: relative;
+        min-height: 380px;
+      }
 
-            <ul class="hero__list">
-              <li>Нарисуете 12 пейзажей: от ретро Петербурга до сегодняшних дней</li>
-              <li>Изучите способы передачи особенностей архитектуры</li>
-              <li>Научитесь передавать художественные образы</li>
-            </ul>
+      .painting-stack img {
+        position: absolute;
+        max-width: 250px;
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        border: 6px solid #fff;
+      }
 
-            <a class="btn btn-warning hero__btn js-scroll" href="#pricing">Узнать подробности</a>
+      .painting-first {
+        top: 0;
+        right: 0;
+        transform: rotate(4deg);
+      }
+
+      .painting-second {
+        top: 80px;
+        left: 40px;
+        transform: rotate(-5deg);
+      }
+
+      .painting-third {
+        bottom: 0;
+        right: 60px;
+        transform: rotate(2deg);
+      }
+
+      .info-strip {
+        background: #fff;
+        padding: 24px 0;
+        border-top: 1px solid rgba(196, 107, 59, 0.2);
+        border-bottom: 1px solid rgba(196, 107, 59, 0.2);
+      }
+
+      .info-item {
+        border: 1px solid rgba(196, 107, 59, 0.25);
+        border-radius: 10px;
+        padding: 14px;
+        text-align: center;
+        background: #fffaf5;
+      }
+
+      .section-title {
+        font-size: 36px;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: #c46b3b;
+      }
+
+      .benefit-card {
+        border: none;
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      .footer {
+        background: #2d2a26;
+        color: #fff;
+      }
+
+      .social-link {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #fff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 8px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      }
+
+      .social-link img {
+        width: 20px;
+        height: 20px;
+      }
+
+      @media (max-width: 991.98px) {
+        .hero {
+          padding-top: 110px;
+        }
+
+        .hero-title {
+          font-size: 36px;
+        }
+
+        .painting-stack {
+          min-height: 320px;
+          margin-top: 40px;
+        }
+
+        .painting-stack img {
+          max-width: 210px;
+        }
+      }
+
+      @media (max-width: 767.98px) {
+        .hero {
+          padding-top: 96px;
+        }
+
+        .hero-title {
+          font-size: 30px;
+        }
+
+        .hero-subtitle {
+          font-size: 16px;
+        }
+
+        .painting-stack {
+          min-height: 260px;
+        }
+
+        .painting-stack img {
+          position: static;
+          transform: none;
+          margin-bottom: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#top">
+          <img src="img/logo1.png" alt="Логотип" width="42" class="mr-2" />
+          Петербург сквозь года
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#mainNav"
+          aria-controls="mainNav"
+          aria-expanded="false"
+          aria-label="Переключить навигацию"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#about">О курсе</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#program">Программа</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#expert">Эксперт</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#pricing">Тарифы</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contacts">Контакты</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center ml-lg-3">
+            <a class="social-link" href="https://t.me" target="_blank" rel="noreferrer">
+              <img src="img/icon-tw.svg" alt="Telegram" />
+            </a>
+            <a class="social-link" href="https://wa.me/79990001122" target="_blank" rel="noreferrer">
+              <img src="img/icon-ig.svg" alt="WhatsApp" />
+            </a>
           </div>
         </div>
+      </div>
+    </nav>
 
-        <div class="col-lg-6">
-          <div class="hero__collage">
-            <div class="row">
-              <div class="col-6 mb-3"><img src="img/hero-1.jpg" alt=""></div>
-              <div class="col-6 mb-3"><img src="img/hero-2.jpg" alt=""></div>
-              <div class="col-12"><img src="img/hero-3.jpg" alt=""></div>
+    <main id="top">
+      <section class="hero" id="about">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6">
+              <p class="hero-subtitle mb-2">С Владимиром Заруцким</p>
+              <h1 class="hero-title mb-3">Петербург сквозь года</h1>
+              <p class="lead">
+                Научитесь передавать атмосферу родного города акварелью и создайте 12 уникальных
+                пейзажей за один курс.
+              </p>
+              <ul class="hero-list list-unstyled">
+                <li><i class="fas fa-check text-success mr-2"></i> От ретро-видов до современных улиц</li>
+                <li><i class="fas fa-check text-success mr-2"></i> Архитектура и свет в технике акварели</li>
+                <li><i class="fas fa-check text-success mr-2"></i> Работа с композицией и цветом</li>
+              </ul>
+              <div class="d-flex flex-wrap align-items-center mt-4">
+                <a class="btn btn-brand mr-3 mb-3" href="#pricing">Узнать подробности</a>
+                <span class="text-muted">Старт потока: 17 мая</span>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- FEATURES -->
-      <div class="row mt-4">
-        <div class="col-6 col-md-3 mb-3">
-          <div class="feature-card">Материал: акварель</div>
-        </div>
-        <div class="col-6 col-md-3 mb-3">
-          <div class="feature-card">Количество картин: 12</div>
-        </div>
-        <div class="col-6 col-md-3 mb-3">
-          <div class="feature-card">Длительность: 20 часов</div>
-        </div>
-        <div class="col-6 col-md-3 mb-3">
-          <div class="feature-card">Доступ: бессрочный</div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- SECTIONS -->
-  <main>
-    <section id="about" class="section">
-      <div class="container">
-        <h2 class="section__title">Для кого будет полезен курс</h2>
-        <p>Любой текст…</p>
-      </div>
-    </section>
-
-    <section id="program" class="section section--muted">
-      <div class="container">
-        <h2 class="section__title">Программа</h2>
-        <p>Любой текст…</p>
-      </div>
-    </section>
-
-    <section id="expert" class="section">
-      <div class="container">
-        <h2 class="section__title">Эксперт</h2>
-        <p>Любой текст…</p>
-      </div>
-    </section>
-
-    <section id="pricing" class="section section--muted">
-      <div class="container">
-        <h2 class="section__title">Тарифы</h2>
-        <div class="row">
-          <div class="col-md-4 mb-3">
-            <div class="card h-100">
-              <div class="card-body">
-                <h3 class="h5">Базовый</h3>
-                <p>Описание…</p>
-                <button class="btn btn-outline-dark js-scroll" data-target="#signup">Выбрать</button>
+            <div class="col-lg-6">
+              <div class="painting-stack d-flex flex-column flex-md-row align-items-center justify-content-center">
+                <img class="painting-first" src="img/3d934f8314e8ad251dec1ac8c23abe005ceac01d.png" alt="Акварельный город" />
+                <img class="painting-second" src="img/3d934f8314e8ad251dec1ac8c23abe005ceac01d.png" alt="Акварельная перспектива" />
+                <img class="painting-third" src="img/3d934f8314e8ad251dec1ac8c23abe005ceac01d.png" alt="Городской пейзаж" />
               </div>
             </div>
           </div>
-          <!-- ещё 2 -->
+        </div>
+      </section>
+
+      <section class="info-strip" id="program">
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-md-3 col-6 mb-3 mb-md-0">
+              <div class="info-item">Материал: акварель</div>
+            </div>
+            <div class="col-md-3 col-6 mb-3 mb-md-0">
+              <div class="info-item">Количество работ: 12</div>
+            </div>
+            <div class="col-md-3 col-6 mb-3 mb-md-0">
+              <div class="info-item">Длительность: 20 часов</div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="info-item">Доступ: бессрочный</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-5" id="expert">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+              <div class="benefit-card card p-4">
+                <h2 class="section-title mb-3">Для кого будет полезен курс</h2>
+                <p class="mb-2"><strong>Новички.</strong> Пошаговые уроки и работа с тренером.</p>
+                <p class="mb-2"><strong>Практикующие художники.</strong> Новые техники и композиции.</p>
+                <p class="mb-4"><strong>Дизайнеры.</strong> Навык для визуальных концептов и иллюстраций.</p>
+                <a class="btn btn-outline-secondary" href="#contacts">Получить консультацию</a>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                  <h3 class="h4 mb-3">Эксперт курса</h3>
+                  <p class="mb-3">Владимир Заруцкий — художник-акварелист, иллюстратор и педагог.</p>
+                  <ul class="list-unstyled mb-4">
+                    <li><i class="fas fa-award text-warning mr-2"></i> 12 лет преподавания</li>
+                    <li><i class="fas fa-palette text-warning mr-2"></i> 400+ учеников по всему миру</li>
+                    <li><i class="fas fa-city text-warning mr-2"></i> Автор серии «Петербург в акварели»</li>
+                  </ul>
+                  <a class="btn btn-link" href="#pricing">Перейти к тарифам</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-5 bg-white" id="pricing">
+        <div class="container">
+          <div class="text-center mb-5">
+            <h2 class="section-title">Тарифы обучения</h2>
+            <p class="text-muted">Выберите формат и начните творить уже сегодня.</p>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <div class="card benefit-card h-100">
+                <div class="card-body">
+                  <h4 class="card-title">Старт</h4>
+                  <p class="display-4 text-primary">4 900₽</p>
+                  <ul class="list-unstyled">
+                    <li>Доступ к урокам</li>
+                    <li>Материалы курса</li>
+                    <li>Домашние задания</li>
+                  </ul>
+                  <a class="btn btn-brand btn-block" href="#contacts">Записаться</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="card benefit-card h-100 border border-warning">
+                <div class="card-body">
+                  <h4 class="card-title">Профи</h4>
+                  <p class="display-4 text-warning">7 900₽</p>
+                  <ul class="list-unstyled">
+                    <li>Все из тарифа «Старт»</li>
+                    <li>Проверка домашних работ</li>
+                    <li>Обратная связь от эксперта</li>
+                  </ul>
+                  <a class="btn btn-brand btn-block" href="#contacts">Записаться</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="card benefit-card h-100">
+                <div class="card-body">
+                  <h4 class="card-title">Ментор</h4>
+                  <p class="display-4 text-success">11 900₽</p>
+                  <ul class="list-unstyled">
+                    <li>Индивидуальный разбор работ</li>
+                    <li>Чат с куратором</li>
+                    <li>Портфолио по итогам курса</li>
+                  </ul>
+                  <a class="btn btn-brand btn-block" href="#contacts">Записаться</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-5" id="contacts">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+              <h2 class="section-title">Записаться на курс</h2>
+              <p>Оставьте заявку и получите консультацию менеджера в течение 15 минут.</p>
+              <form>
+                <div class="form-group">
+                  <label for="name">Имя</label>
+                  <input type="text" class="form-control" id="name" placeholder="Ваше имя" required />
+                </div>
+                <div class="form-group">
+                  <label for="phone">Телефон</label>
+                  <input type="tel" class="form-control" id="phone" placeholder="+7 (999) 000-00-00" required />
+                </div>
+                <div class="form-group">
+                  <label for="format">Формат обучения</label>
+                  <select class="form-control" id="format" required>
+                    <option value="">Выберите тариф</option>
+                    <option>Старт</option>
+                    <option>Профи</option>
+                    <option>Ментор</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-brand">Отправить заявку</button>
+              </form>
+            </div>
+            <div class="col-lg-6">
+              <div class="card benefit-card p-4">
+                <h4 class="mb-3">Контакты</h4>
+                <p class="mb-1"><strong>Телефон:</strong> <a href="tel:+78005553535">8 (800) 555-35-35</a></p>
+                <p class="mb-1"><strong>Email:</strong> <a href="mailto:info@watercolor.ru">info@watercolor.ru</a></p>
+                <p class="mb-3"><strong>Адрес:</strong> Санкт-Петербург, ул. Итальянская, 12</p>
+                <div>
+                  <a class="btn btn-outline-secondary mr-2" href="https://yandex.ru/maps" target="_blank" rel="noreferrer">
+                    Построить маршрут
+                  </a>
+                  <a class="btn btn-outline-secondary" href="#top">Наверх</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer py-4">
+      <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <p class="mb-2 mb-md-0">© 2024 Петербург сквозь года. Все права защищены.</p>
+        <div>
+          <a class="text-white mr-3" href="#about">О курсе</a>
+          <a class="text-white mr-3" href="#program">Программа</a>
+          <a class="text-white" href="#contacts">Контакты</a>
         </div>
       </div>
-    </section>
+    </footer>
 
-    <section id="signup" class="section">
-      <div class="container">
-        <h2 class="section__title">Записаться</h2>
-        <form class="row">
-          <div class="col-md-6 mb-3">
-            <input class="form-control" placeholder="Имя">
-          </div>
-          <div class="col-md-6 mb-3">
-            <input class="form-control" placeholder="Телефон/Email">
-          </div>
-          <div class="col-12 mb-3">
-            <textarea class="form-control" rows="4" placeholder="Комментарий"></textarea>
-          </div>
-          <div class="col-12">
-            <button class="btn btn-warning" type="button">Отправить</button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <section id="contacts" class="section section--muted">
-      <div class="container">
-        <h2 class="section__title">Контакты</h2>
-        <p>Телефон / соцсети / адрес…</p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="small">© 2026</div>
-    </div>
-  </footer>
-
-  <!-- JS -->
-  <script src="js/jquery-3.7.1.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/main.js"></script>
-</body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
 </html>
